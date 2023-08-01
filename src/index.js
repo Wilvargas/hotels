@@ -1,4 +1,3 @@
-// index.js
 import { hotelsData } from "./hotels.js";
 
 function getFlagImageUrl(country) {
@@ -6,7 +5,6 @@ function getFlagImageUrl(country) {
   return flagPath;
 }
 
-// Función para obtener el texto del precio con los signos de dólar adecuados
 function getPriceText(price) {
   return "$".repeat(price);
 }
@@ -17,13 +15,11 @@ function showHoteles() {
   hotelsData()
     .then((response) => response.json())
     .then((data) => {
-      // Iteramos sobre los datos para crear los elementos HTML para cada hotel
+      
       data.forEach((hotel) => {
-        // Creamos un elemento <article> para representar cada hotel
         const articleElement = document.createElement("article");
         articleElement.classList.add("hotel"); 
 
-        // Creamos y agregamos los elementos para mostrar la información del hotel
         const nameElement = document.createElement("h2");
         nameElement.textContent = hotel.name;
         articleElement.appendChild(nameElement);
@@ -45,7 +41,7 @@ function showHoteles() {
         articleElement.appendChild(roomsElement);
 
         const priceElement = document.createElement("p");
-        priceElement.textContent = getPriceText(hotel.price); // Obtenemos el texto del precio con los signos de dólar
+        priceElement.textContent = getPriceText(hotel.price); 
         priceElement.classList.add("p-p");
         articleElement.appendChild(priceElement);
 
@@ -69,7 +65,6 @@ function showHoteles() {
         descriptionElement.classList.add("p-d");
         articleElement.appendChild(descriptionElement);
 
-        // Agregamos el elemento <article> al contenedor (<div class="container--cards">)
         containerElement.appendChild(articleElement);
       });
     })
