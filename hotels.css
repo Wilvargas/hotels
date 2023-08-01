@@ -111,3 +111,18 @@ body {
     font-weight: 500;
     font-size: 2.8rem;
 }
+
+.container--cards {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 0.3rem;
+    row-gap: 9rem;
+}
+.hotel {
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    margin-bottom: 5rem;
+}
+  

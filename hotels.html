@@ -25,10 +25,13 @@
                         <option value="Chl">Chile</option>
                         <option value="Ury">Uruguay</option>
                     </select>
+
                     <label class="filter date-1" for="fecha"></label>
-                    <input type="date" id="fecha" name="fecha">
+                    <input type="date" id="fecha" name="fecha" min="" max="">
+
                     <label class="filter date-2" for="fecha"></label>
                     <input type="date" id="fecha" name="fecha">
+
                     <select class="filter all-prices" name="all-prices" id="filter-prices">
                         <option value="text-option price-1">$</option>
                         <option value="text-option price-2">$$</option>
@@ -41,7 +44,7 @@
                         <option value="text-option size-3">Medium</option>
                         <option value="text-option Ury">large</option>
                     </select>
-                    <button id="printButton" class="btn-clear">Clear</button>
+                    <button id="clearButton" class="btn-clear">Clear</button>
                 </div>
               </div>
                     <div class="message">
@@ -50,8 +53,10 @@
                     </div>
         </div>
     </header>
-    <main></main>
+    <main id="hotelList" class="main">
+        <div class="container--cards"></div>
+    </main>
     <footer></footer>
-    <script type="module" src="./src/hotels.js"></script>
+    <script type="module" src="./src/index.js"></script>
 </body>
 </html>
