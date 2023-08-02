@@ -65,6 +65,20 @@ function showHoteles() {
         descriptionElement.classList.add("p-d");
         articleElement.appendChild(descriptionElement);
 
+        const dateIcon1 = document.querySelector(".filter.date-1");
+        const dateIcon2 = document.querySelector(".filter.date-2");
+
+        // Agregar eventos click a los iconos para mostrar los calendarios
+        dateIcon1.addEventListener("click", function () {
+          const dateInput1 = document.querySelector(".filter2");
+          dateInput1.focus();
+        });
+
+        dateIcon2.addEventListener("click", function () {
+          const dateInput2 = document.querySelector(".filter3");
+          dateInput2.focus();
+        });
+
         containerElement.appendChild(articleElement);
       });
     })
@@ -72,5 +86,6 @@ function showHoteles() {
       console.error("Error fetching hotels data:", error);
     });
 }
+
 
 window.onload = showHoteles;
