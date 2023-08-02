@@ -43,7 +43,7 @@ body {
 .header-content {
     position: absolute;
     top: 9%;
-    left: 14%;
+    left: 10%;
     transform: translate(-50% -50%);
     color: #fff;
 }
@@ -54,31 +54,103 @@ body {
     margin-top: 1.2rem;
 }
 .container-grid {
-    width: 65vw;
+    width: 80vw;
     height: 3.5rem;
     background-color: gray;
     opacity: 59%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     align-content: center;
     margin: 1rem 0;
+    /* border: 2px solid red; */
 }
 .filters-grid {
     padding: 0.2rem 0.2rem 0.2rem 1.1rem;
+    
 }
 /* Añado un espacio entre los elementos, excepto al último */
 .filters-grid > *:not(:last-child) {
     margin-right: 0.2rem;
 }
-.img-filter {
-    width: 1.2rem;
-    height: 1.2rem;
+select.filter1 {
+  background-image: url(./assets/1.png);
+  background-repeat: no-repeat;
+  background-size: 1rem 1rem;
+  background-position: 3% 50%;
+  width: 7.3rem;
+  height: 2.3rem;
+  text-align:center;
+  border-radius: 0.3rem;
+  padding-left: 0.5rem;
 }
-.img-location {
-    width: 1.5rem;
-    height: 1.3rem;
+/* FECHA 1 - IDA */
+input[type="date"].filter2 {
+  background-image: url(./assets/2.svg);
+  background-repeat: no-repeat;
+  background-size: 1rem 1rem;
+  background-position: 3% 50%;;
+  width: 8rem;
+  height: 2.3rem;
+  text-align:center;
+  border-radius: 0.3rem;
+  padding-left: 0.5rem;
 }
+/* los 3 códigos siguientes eliminan el icono calendario de varios navegadores - ay amá jaja */
+input[type="date"].filter2::-webkit-calendar-picker-indicator {
+    display: none;
+}
+input[type="date"].filter2::-moz-calendar-picker-indicator {
+    display: none;
+}
+input[type="date"].filter2::-ms-clear {
+    display: none;
+}
+
+/* FECHA 2 - RETORNO */
+input[type="date"].filter3 {
+  background-image: url(./assets/3.svg);
+  background-repeat: no-repeat;
+  background-size: 1rem 1rem;
+  background-position: 4% 50%;;
+  width: 8rem;
+  height: 2.3rem;
+  text-align:center;
+  border-radius: 0.3rem;
+  padding-left: 0.5rem;
+}
+input[type="date"].filter3::-webkit-calendar-picker-indicator {
+    display: none;
+}
+input[type="date"].filter3::-moz-calendar-picker-indicator {
+    display: none;
+}
+input[type="date"].filter3::-ms-clear {
+    display: none;
+}
+select.filter4 {
+  background-image: url(./assets/4.svg);
+  background-repeat: no-repeat;
+  background-size: 1rem 1rem;
+  background-position: 4% 50%;;
+  width: 7.3rem;
+  height: 2.3rem;
+  text-align:center;
+  border-radius: 0.3rem;
+  
+}
+select.filter5 {
+  background-image: url(./assets/5.svg);
+  background-repeat: no-repeat;
+  background-size: 1rem 1rem;
+  background-position: 5% 50%;;
+  width: 7.3rem;
+  height: 2.3rem;
+  text-align:center;
+  border-radius: 0.3rem;
+  padding-left: 0.6rem;
+}
+
 .btn-clear {
     background-color: black;
     grid-column-end: 3;
