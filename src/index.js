@@ -125,5 +125,4 @@ function clearFilters() {
   
   filterHotels();
 }
-
 window.onload = showHotels;

@@ -66,8 +66,7 @@ body {
     border-radius: 1rem;
 }
 .filters-grid {
-    padding: 0.2rem 0.2rem 0.2rem 1.1rem;
-    
+    padding: 0.2rem 0.2rem 0.2rem 1.1rem;    
 }
 /* Añado un espacio entre los elementos, excepto al último */
 .filters-grid > *:not(:last-child) {
@@ -84,7 +83,7 @@ select.filter1 {
   border-radius: 0.3rem;
   padding-left: 0.5rem;
 }
-/* FECHA 1 - IDA - FILTER 2*/
+/* FECHA 1 - DATE- IDA - FILTER 2*/
 input[type="date"].filter2 {
   background-image: url(./assets/2.svg);
   background-repeat: no-repeat;
@@ -99,7 +98,7 @@ input[type="date"].filter2 {
 input[type="date"].filter2 {
   cursor: pointer;
 }
-/* FECHA 2 - RETORNO - FILTER 3 */
+/* FECHA 2 - DATE - RETORNO - FILTER 3 */
 input[type="date"].filter3 {
   background-image: url(./assets/3.svg);
   background-repeat: no-repeat;
@@ -117,8 +116,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 input[type="date"].filter3 {
   cursor: pointer;
 }
-
-
+/* FILTER 4 - PRICES */
 select.filter4 {
   background-image: url(./assets/4.svg);
   background-repeat: no-repeat;
@@ -129,6 +127,7 @@ select.filter4 {
   text-align:center;
   border-radius: 0.3rem;
 }
+/* FILTER 5 - SIZES */
 select.filter5 {
   background-image: url(./assets/5.svg);
   background-repeat: no-repeat;
@@ -140,7 +139,7 @@ select.filter5 {
   border-radius: 0.3rem;
   padding-left: 0.6rem;
 }
-
+/* BTN-CLEAR */
 .btn-clear {
     background-color: black;
     grid-column-end: 3;
@@ -174,11 +173,11 @@ select.filter5 {
     font-weight: 500;
     font-size: 2.8rem;
 }
-
+/* CONTAINER--CARDS (CONTAINER PPAL DE MAIN) */
 .container--cards {
-    width: 100%;
+    width: 100vw;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr)); /* Responsive con grid sin media queries */
     margin: 0;
     padding: 0;
 }
