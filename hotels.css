@@ -84,7 +84,7 @@ select.filter1 {
   border-radius: 0.3rem;
   padding-left: 0.5rem;
 }
-/* FECHA 1 - IDA */
+/* FECHA 1 - IDA - FILTER 2*/
 input[type="date"].filter2 {
   background-image: url(./assets/2.svg);
   background-repeat: no-repeat;
@@ -96,8 +96,10 @@ input[type="date"].filter2 {
   border-radius: 0.3rem;
   padding-left: 0.5rem;
 }
-
-/* FECHA 2 - RETORNO */
+input[type="date"].filter2 {
+  cursor: pointer;
+}
+/* FECHA 2 - RETORNO - FILTER 3 */
 input[type="date"].filter3 {
   background-image: url(./assets/3.svg);
   background-repeat: no-repeat;
@@ -109,6 +111,13 @@ input[type="date"].filter3 {
   border-radius: 0.3rem;
   padding-left: 0.5rem;
 }
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0%;
+}
+input[type="date"].filter3 {
+  cursor: pointer;
+}
+
 
 select.filter4 {
   background-image: url(./assets/4.svg);
@@ -119,7 +128,6 @@ select.filter4 {
   height: 2.3rem;
   text-align:center;
   border-radius: 0.3rem;
-  
 }
 select.filter5 {
   background-image: url(./assets/5.svg);
