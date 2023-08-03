@@ -16,10 +16,32 @@ function showHotels() {
   const allPricesClick = document.getElementById("filter-prices");
   const allSizesClick = document.getElementById("filter-sizes");
   const clearButton = document.getElementById("clearButton")
+  const hotelSizes = {
+    "Luma Casa de Montaña": "size-small",
+    "Casa Turquesa": "size-small",
+    "Campo Tinto": "size-small",
+    "La Bamba de Areco": "size-medium",
+    "Entre Cielos": "size-medium",
+    "La Merced del Alto": "size-medium",
+    "Azur Real Hotel": "size-medium",
+    "Rincón del Socorro": "size-medium",
+    "Vila Da Santa": "size-medium",
+    "UXUA Casa Hotel & Spa": "size-medium",
+    "Casa Higueras": "size-medium",
+    "Sainte Jeanne Boutique & Spa": "size-large",
+    "Hotel Huacalera": "size-large",
+    "Ponta dos Ganchos": "size-large",
+    "Alto Atacama": "size-large",
+    "Tierra Patagonia": "size-large",
+    "Vira Vira": "size-large",
+    "Vik Chile": "size-large",
+  };
 
+  /* LLAMADA A LA API PARA OBTENER LA INFO DE LOS HOTELES */
   hotelsData()
     .then((response) => response.json())
     .then((data) => {
+      /* ITERAR SOBRE LA DATA Y CREAR ELEMENTOS */
       data.forEach((hotel) => {
         const articleElement = document.createElement("article");
         articleElement.classList.add("hotel"); 
@@ -71,21 +93,12 @@ function showHotels() {
         /* ASIGNACIÓN DE PAÍS, PRECIO Y TAMAÑOS */
         articleElement.classList.add(`country-${hotel.country}`);
         articleElement.classList.add(`price-${hotel.price}`);
-        articleElement.classList.add(`size-${hotel.size}`);
-
-        /* INPUTS - pendiente para configurar despliegue del calendario al hacer click en cualquier zona del input*/
-        /* const input1 = document.querySelector(".filter2");
-        const input2 = document.querySelector(".filter3");
-
-        function showCalendar(event) {
-          event.currentTarget.click()
-        }
-        input1.addEventListener("click", showCalendar);
-        input2.addEventListener("click", showCalendar); */
-
+        articleElement.classList.add(hotelSizes[hotel.name]);
         containerElement.appendChild(articleElement);
       });
+      
       /* CREACIÓN DE EVENTOS SOBRE FILTROS - FILTRAR HOTELES Y LIMPIAR BOTÓN */
+      /* la función filterHotels se ejecutará cada vez que el Elemento contenido en allCountriesClick cambie */
       allCountriesClick.addEventListener("change", () => filterHotels());
       allPricesClick.addEventListener("change", () => filterHotels());
       allSizesClick.addEventListener("change", () => filterHotels());
@@ -102,7 +115,6 @@ function filterHotels() {
   const selectedCountry = document.getElementById("filter-countries").value;
   const selectedPrice = document.getElementById("filter-prices").value;
   const selectedSize = document.getElementById("filter-sizes").value;
-
   const hotelCards = document.querySelectorAll(".hotel");
 
   /* VERIFICO SI UNA CARD DEBE MOSTRARSE O NO */
@@ -115,9 +127,11 @@ function filterHotels() {
       card.style.display = "block";
     } else {
       card.style.display = "none";
-    }
-  })
-}
+    };
+  });
+};
+
+
 function clearFilters() {
   document.getElementById("filter-countries").value = "all";
   document.getElementById("filter-prices").value = "all";

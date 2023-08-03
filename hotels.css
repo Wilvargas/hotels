@@ -181,6 +181,9 @@ select.filter5 {
     margin: 0;
     padding: 0;
 }
+.article {
+  place-self: center;
+}
 /* ARTICLE.HOTEL - Estilos para la etiqueta <article> que representa cada card de hotel */
 .hotel {
     width: 30.13rem;
@@ -194,8 +197,7 @@ select.filter5 {
     display: flex;
     justify-content: center;
   }
-  
-  
+  /* HOTELS'S IMG */
   .img-hotel {
     width: 100%;
     height: 100%;
@@ -205,7 +207,7 @@ select.filter5 {
     object-fit: cover;
     overflow: hidden;
   }
-  
+  /* HOTELS'S NAME TEXT */
 h2 {
     position: absolute;
     bottom: 4.8rem;
@@ -216,11 +218,13 @@ h2 {
     font-weight: bold;
     color: white;
   }
+  /* CoUNTRY TEXT */
   .p-c {
     font-size: 1.12rem;
     left: 3.5rem; 
     bottom: 3.3rem;
   }
+  /* COUNTRY'S FLAGS */
   .img-flag {
     width: 5%;
     position: absolute;
@@ -232,16 +236,18 @@ h2 {
     margin: 0;
     padding: 3px;
     color: white; 
-    /* background-color: rgba(255, 255, 255, 0.7); */
   }
+  /* ROOMS TEXT */
   .p-r {
     left: 1.5rem; 
     bottom: 1.7rem;
   }
+  /* PRICE TEXT */
   .p-p {
     left: 6rem; 
     bottom: 1.7rem;
   }
+  /* BUTTON - BOOK IT! */
   article.hotel button {
     position: absolute;
     width: 5rem;
@@ -258,10 +264,12 @@ h2 {
     text-align: center;
     cursor: pointer;
   }
+  /* DESCRIPTION TEXT */
   .p-d {
     position: absolute;
     display: none;
   }
+  /* SIXE TEXT */
   .p-s {
     position: absolute;
     display: none;
