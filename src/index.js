@@ -16,26 +16,18 @@ function showHotels() {
   const allPricesClick = document.getElementById("filter-prices");
   const allSizesClick = document.getElementById("filter-sizes");
   const clearButton = document.getElementById("clearButton")
-  const hotelSizes = {
-    "Luma Casa de Montaña": "size-small",
-    "Casa Turquesa": "size-small",
-    "Campo Tinto": "size-small",
-    "La Bamba de Areco": "size-medium",
-    "Entre Cielos": "size-medium",
-    "La Merced del Alto": "size-medium",
-    "Azur Real Hotel": "size-medium",
-    "Rincón del Socorro": "size-medium",
-    "Vila Da Santa": "size-medium",
-    "UXUA Casa Hotel & Spa": "size-medium",
-    "Casa Higueras": "size-medium",
-    "Sainte Jeanne Boutique & Spa": "size-large",
-    "Hotel Huacalera": "size-large",
-    "Ponta dos Ganchos": "size-large",
-    "Alto Atacama": "size-large",
-    "Tierra Patagonia": "size-large",
-    "Vira Vira": "size-large",
-    "Vik Chile": "size-large",
-  };
+  
+  const hotelSizes = (rooms) => {
+    if (rooms <= 10) {
+      return 1
+    }
+    if (rooms >10 && rooms <=20) {
+      return 2
+    }
+    if (rooms >20) {
+      return 3
+    }
+  } 
 
   /* LLAMADA A LA API PARA OBTENER LA INFO DE LOS HOTELES */
   hotelsData()
@@ -93,7 +85,7 @@ function showHotels() {
         /* ASIGNACIÓN DE PAÍS, PRECIO Y TAMAÑOS */
         articleElement.classList.add(`country-${hotel.country}`);
         articleElement.classList.add(`price-${hotel.price}`);
-        articleElement.classList.add(hotelSizes[hotel.name]);
+        articleElement.classList.add(`size-${hotelSizes(hotel.rooms)}`);
         containerElement.appendChild(articleElement);
       });
       
@@ -117,11 +109,16 @@ function filterHotels() {
   const selectedSize = document.getElementById("filter-sizes").value;
   const hotelCards = document.querySelectorAll(".hotel");
 
+  console.log(hotelCards[0].classList);
+
+
   /* VERIFICO SI UNA CARD DEBE MOSTRARSE O NO */
   hotelCards.forEach(card => {
-    const countryMatch = selectedCountry === "all" ? true : card.classList.contains(`country-${selectedCountry}`);
-    const priceMatch = selectedPrice === "all" ? true : card.classList.contains(`price-${selectedPrice}`);
-    const sizeMatch = selectedSize === "all" ? true : card.classList.contains(`size-${selectedSize}`);
+    const countryMatch = selectedCountry === "all" ? true : card.classList[1].includes(selectedCountry);
+    const priceMatch = selectedPrice === "all" ? true : card.classList[2].includes(selectedPrice);
+    const sizeMatch = selectedSize === "all" ? true : card.classList[3].includes(selectedSize);
+
+    console.log(selectedCountry,selectedPrice,selectedSize);
 
     if (countryMatch && priceMatch && sizeMatch) {
       card.style.display = "block";
