@@ -10,16 +10,15 @@ function getPriceText(price) {
 }
 // 3 FORMATOS DE FECHA ()
 let currentDate = new Date();
-console.log(currentDate);
 
 let year = currentDate.getFullYear();
 let month = (currentDate.getMonth()+1).toString().padStart(2, '0');
 let day = currentDate.getDate().toString().padStart(2, '0');
 
 let minCurrentDate = `${year}-${month}-${day}`;
-console.log(minCurrentDate);
+// console.log(minCurrentDate);
 
-
+let selectedDays;
  /* FUNCTION - SHOW HOTELS  */
   function showHotels() {
     const containerElement = document.querySelector(".container--cards");
@@ -29,8 +28,9 @@ console.log(minCurrentDate);
     const clearButton = document.getElementById("clearButton")
     let inputDate1 = document.getElementById("fecha1");
     inputDate1.setAttribute("min", minCurrentDate);
+    console.log(inputDate1);
     const inputDate2 = document.getElementById("fecha2");
-    inputDate2.setAttribute("min", minCurrentDate);
+    //La asignación del valor al input2 lo hice despues del evento en el campo fecha ocurrido en el input1
    
    
     const hotelSizes = (rooms) => {
@@ -102,6 +102,20 @@ console.log(minCurrentDate);
           articleElement.classList.add(`price-${hotel.price}`);
           articleElement.classList.add(`size-${hotelSizes(hotel.rooms)}`);
           containerElement.appendChild(articleElement);
+          /* AVAILABILITY FROM Y TO */
+          articleElement.setAttribute("availabilityFrom", hotel.availabilityFrom);
+          articleElement.setAttribute("availabilityTo", hotel.availabilityTo);
+          containerElement.appendChild(articleElement);
+
+          const availabilityFrom = hotel.availabilityFrom;
+          const availabilityTo = hotel.availabilityTo;
+          const availableDays = (availabilityTo - availabilityFrom) / (24 * 60 * 60 * 1000);
+          // CREO EL ATRIBUTO availableDays PARA ACCEDER FACILMENTE AL # DE DÍAS DISPONIBLES EN LOS HOTELES
+          articleElement.setAttribute("availableDays", availableDays);
+          // console.log(`${hotel.name}: ${availableDays} días disponibles`);
+
+
+
           
         });
         /* CREACIÓN DE EVENTOS SOBRE FILTROS - FILTRAR HOTELES Y LIMPIAR BOTÓN */
@@ -111,13 +125,14 @@ console.log(minCurrentDate);
         allSizesClick.addEventListener("change", () => filterHotels());
         clearButton.addEventListener("click", () => clearFilters());
         
-        inputDate1.addEventListener('change', () => {
-          let startDate = new Date(inputDate1.value).getTime();
-          console.log(inputDate1.value);  
-          let minDate = new Date(startDate);
+        inputDate1.addEventListener("change", () => {
+          const startDate = new Date(inputDate1.value).getTime();
+          console.log(startDate);  
+
+          const minDate = new Date(startDate);
           minDate.setDate(minDate.getDate() + 1);
+          const minDateFormatted = `${minDate.getFullYear()}-${(minDate.getMonth() + 1).toString().padStart(2, '0')}-${minDate.getDate().toString().padStart(2, '0')}`;
           
-          let minDateFormatted = `${minDate.getFullYear()}-${(minDate.getMonth() + 1).toString().padStart(2, '0')}-${minDate.getDate().toString().padStart(2, '0')}`;
           // OTRA FORMA DE ASIGNAR UN VALOR AL ATRIBUTO "MIN"
           inputDate2.min = minDateFormatted;
           console.log(inputDate2.value)
@@ -125,46 +140,56 @@ console.log(minCurrentDate);
             filterHotels(); // Llamar a la función filterHotels después de validar la fecha
         });
         inputDate2.addEventListener('change', () => {
-          let endDate= new Date(inputDate2.value).getTime()
-          console.log(inputDate2.value);
-          if (endDate < minCurrentDate) {
-            alert("Attention! Select a day from the current date.");
-            inputDate2.value = ""; // Limpio el campo de fecha
-          } else {
-            filterHotels(); // Llamar a la función filterHotels después de validar la fecha
-          }
+          const startDate = new Date(inputDate1.value).getTime();
+          const endDate= new Date(inputDate2.value).getTime()
+          console.log(endDate)
+          selectedDays = (endDate - startDate) / (24 * 60 * 60 * 1000); // Calcula los días seleccionados
+
+          
+          filterHotels(); // Llamar a la función filterHotels después de validar la fecha
         });
-  
-
-
         filterHotels();
       })
       .catch((error) => {
-      console.error("Error fetching hotels data:", error);
+        console.error("Error fetching hotels data:", error);
       });
-}
-/* FILTER HOTELS */
-function filterHotels() {
-  const selectedCountry = document.getElementById("filter-countries").value;
-  const selectedPrice = document.getElementById("filter-prices").value;
-  const selectedSize = document.getElementById("filter-sizes").value;
-  const hotelCards = document.querySelectorAll(".hotel");
-  // console.log(hotelCards[0].classList);
+    }
+    
+    /* FILTER HOTELS */
+    function filterHotels() {
+      const selectedCountry = document.getElementById("filter-countries").value;
+      const selectedPrice = document.getElementById("filter-prices").value;
+      const selectedSize = document.getElementById("filter-sizes").value;
+      const hotelCards = document.querySelectorAll(".hotel");
+      // const selectedDays = (new Date(document.getElementById("fecha2").value).getTime() - new Date(document.getElementById("fecha1").value).getTime()) / (24 * 60 * 60 * 1000);
+      
+      
+      // console.log(hotelCards[0].classList);
+      
+      /* VERIFICO SI UNA CARD DEBE MOSTRARSE O NO */
+      hotelCards.forEach(card => {
+        const countryMatch = selectedCountry === "all" ? true : card.classList[1].includes(selectedCountry);
+        const priceMatch = selectedPrice === "all" ? true : card.classList[2].includes(selectedPrice);
+        const sizeMatch = selectedSize === "all" ? true : card.classList[3].includes(selectedSize);
+        // console.log(selectedCountry,selectedPrice,selectedSize);
+        
+        const availableDays = parseFloat(card.getAttribute("availableDays"));
+        let dateMatch = selectedDays <= availableDays ? true : card.getAttribute("data-country");
+        
+        console.log(selectedDays);
+        console.log(availableDays);
 
-  /* VERIFICO SI UNA CARD DEBE MOSTRARSE O NO */
-  hotelCards.forEach(card => {
-  const countryMatch = selectedCountry === "all" ? true : card.classList[1].includes(selectedCountry);
-  const priceMatch = selectedPrice === "all" ? true : card.classList[2].includes(selectedPrice);
-  const sizeMatch = selectedSize === "all" ? true : card.classList[3].includes(selectedSize);
-  // console.log(selectedCountry,selectedPrice,selectedSize);
 
-  if (countryMatch && priceMatch && sizeMatch) {
-      card.style.display = "block";
+    if (countryMatch && priceMatch && sizeMatch) {
+      if (dateMatch) {
+        card.style.display = "block";
+      }
     } else {
       card.style.display = "none";
     };
   });
 };
+
 
 function clearFilters() {
   document.getElementById("filter-countries").value = "all";
