@@ -171,19 +171,17 @@ let selectedDays;
         const countryMatch = selectedCountry === "all" ? true : card.classList[1].includes(selectedCountry);
         const priceMatch = selectedPrice === "all" ? true : card.classList[2].includes(selectedPrice);
         const sizeMatch = selectedSize === "all" ? true : card.classList[3].includes(selectedSize);
-        // console.log(selectedCountry,selectedPrice,selectedSize);
+        console.log(selectedCountry,selectedPrice,selectedSize);
         
         const availableDays = parseFloat(card.getAttribute("availableDays"));
-        let dateMatch = selectedDays <= availableDays ? true : card.getAttribute("data-country");
+        const dateMatch = selectedDays > availableDays ? false : true;
         
         console.log(selectedDays);
         console.log(availableDays);
 
 
-    if (countryMatch && priceMatch && sizeMatch) {
-      if (dateMatch) {
+    if (countryMatch && priceMatch && sizeMatch && dateMatch) {
         card.style.display = "block";
-      }
     } else {
       card.style.display = "none";
     };
