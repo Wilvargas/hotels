@@ -31,6 +31,7 @@ function showHotels() {
   console.log(inputDate1);
   const inputDate2 = document.getElementById("fecha2");
   //La asignación del valor al input2 lo hice despues del evento en el campo fecha ocurrido en el input1
+
   const hotelSizes = (rooms) => {
     if (rooms <= 10) {
       return 1
@@ -110,7 +111,23 @@ function showHotels() {
         // CREO EL ATRIBUTO availableDays PARA ACCEDER FACILMENTE AL # DE DÍAS DISPONIBLES EN LOS HOTELES
         articleElement.setAttribute("availableDays", availableDays);
         console.log(`${hotel.name}: ${availableDays} días disponibles`);
+        //MESSAGE HOTELS NOT FOUND 
+        const notFoundSection = document.createElement("div");
+        notFoundSection.classList.add("hotelsNotFound");
+        notFoundSection.style.display = "none"; //Quiero ocultar el mensaje desde el inicio.
+
+        const infoIcon = document.createElement("img");
+        infoIcon.classList.add("img-info")
+        infoIcon.src = "./assets/info-icon.png";
+        infoIcon.alt = "Info Icon";
+
+        const notfoundText = document.createElement("p");
+        notfoundText.textContent = "No hotel left with those filters. Try a new combination of them";
+        notfoundText.classList.add("p-notFoundHotel")
         
+        notFoundSection.appendChild(infoIcon);
+        notFoundSection.appendChild(notfoundText);
+        containerElement.appendChild(notFoundSection);
       });
       /* CREACIÓN DE EVENTOS SOBRE FILTROS - FILTRAR HOTELES Y LIMPIAR BOTÓN */
       /* la función filterHotels se ejecutará cada vez que el Elemento contenido en allCountriesClick cambie */
@@ -151,7 +168,8 @@ function filterHotels() {
   const selectedCountry = document.getElementById("filter-countries").value;
   const selectedPrice = document.getElementById("filter-prices").value;
   const selectedSize = document.getElementById("filter-sizes").value;
-  const hotelCards = document.querySelectorAll(".hotel");    
+  const hotelCards = document.querySelectorAll(".hotel");   
+  let noHotelsFound = true 
   /* VERIFICO SI UNA CARD DEBE MOSTRARSE O NO */
   hotelCards.forEach(card => {
     const countryMatch = selectedCountry === "all" ? true : card.classList[1].includes(selectedCountry);
@@ -166,10 +184,18 @@ function filterHotels() {
     console.log(availableDays)
     if (countryMatch && priceMatch && sizeMatch && dateMatch) {
         card.style.display = "block";
+        noHotelsFound = false; // Si se encontró al menos un hotel
       } else {
         card.style.display = "none";
       }
   });
+  //MESSAGE CONDITIONAL
+      const notFoundSection = document.querySelector(".hotelsNotFound");
+    if (noHotelsFound) {
+      notFoundSection.style.display = "block";
+    } else {
+      notFoundSection.style.display = "none";
+    }
 };
 
 function clearFilters() {

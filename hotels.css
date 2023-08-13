@@ -274,4 +274,17 @@ h2 {
     position: absolute;
     display: none;
   }
-  
+
+.hotelsNotFound {
+  display: flex;
+  align-items: center;
+  background-color: #cce5ff;
+  color: #004085;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  border: 1px solid #b8daff;
+  border-radius: 1rem;
+  width: 90%;
+  justify-self: center;
+  text-align:center;
+}
