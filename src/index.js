@@ -1,7 +1,7 @@
 import { hotelsData } from "./hotels.js";
 /* FLAGS */
 function getFlagImageUrl(country) {
-  const flagPath = `../assets/${country}-flag.png`;
+  const flagPath = `/assets/${country}-flag.png`;
   return flagPath;
 }
 /* PRICES SIMBOL $$$$ */
