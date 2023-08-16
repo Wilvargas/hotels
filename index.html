@@ -18,31 +18,32 @@
             <h1 class="h1-title">Book it!</h1>
               <div class="container-grid">
                 <div class="filters-grid">
-                    <select class="filter all-countries" id="filter-countries" name="all-countries">
-                        <option value="Arg">All countries</option>
-                        <option value="Arg">Argentina</option>
-                        <option value="Bra">Brasil</option>
-                        <option value="Chl">Chile</option>
-                        <option value="Ury">Uruguay</option>
+                    <select class="filter1 all-countries" id="filter-countries" name="all-countries">
+                        <option value="all">All countries</option>
+                        <option value="country-Argentina">Argentina</option>
+                        <option value="country-Brasil">Brasil</option>
+                        <option value="country-Chile">Chile</option>
+                        <option value="country-Uruguay">Uruguay</option>
                     </select>
 
                     <label class="filter date-1" for="fecha"></label>
-                    <input type="date" id="fecha" name="fecha" min="" max="">
+                    <input class="filter2" type="date" id="fecha1" name="fecha" min="" max="">
 
                     <label class="filter date-2" for="fecha"></label>
-                    <input type="date" id="fecha" name="fecha">
+                    <input class="filter3" type="date" id="fecha2" name="fecha" min="" max="">
 
-                    <select class="filter all-prices" name="all-prices" id="filter-prices">
-                        <option value="text-option price-1">$</option>
-                        <option value="text-option price-2">$$</option>
-                        <option value="text-option price-3">$$$</option>
-                        <option value="text-option price-4">$$$$</option>
+                    <select class="filter4 all-prices" name="all-prices" id="filter-prices">
+                        <option value="all">All prices</option>
+                        <option value="price-1">$</option>
+                        <option value="price-2">$$</option>
+                        <option value="price-3">$$$</option>
+                        <option value="price-4">$$$$</option>
                     </select>
-                    <select class="filter all-sizes" name="all-sizes" id="filter-sizes">
-                        <option value="text-option size-1">$ All sizes</option>
-                        <option value="text-option size-2">Small</option>
-                        <option value="text-option size-3">Medium</option>
-                        <option value="text-option Ury">large</option>
+                    <select class="filter5 all-sizes" name="all-sizes" id="filter-sizes">
+                        <option value="all"> All sizes</option>
+                        <option value="size-1">Small</option>
+                        <option value="size-2">Medium</option>
+                        <option value="size-3">large</option>
                     </select>
                     <button id="clearButton" class="btn-clear">Clear</button>
                 </div>
